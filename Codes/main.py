@@ -1,10 +1,13 @@
 from apriori import *
+from pathlib import Path
+import os
 
 
 def data_to_array():
     # Generate a transaction list from the data
     # transactions is list of transaction dictionaries
-    file = open('../Data/associationruletestdata.txt', 'r')
+    grand_parent_path = Path(__file__).parents[1] #change it so the program runs on any platform/os
+    file = open(os.path.join(grand_parent_path, "Data", "associationruletestdata.txt"), 'r')
     transactions = []
     for line in file:
         item_set = line.split()
@@ -37,5 +40,5 @@ def answer_Q1():
         run_Q1(support)
 
 
-# answer_Q1()
-# run_Q1(0.7)
+#answer_Q1()
+#run_Q1(0.7)
