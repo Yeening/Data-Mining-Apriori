@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b57799de-1fa9-4fa6-a21c-e5b5abf1ebca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Codes/association_rule.py" afterPath="$PROJECT_DIR$/Codes/association_rule.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="association_rule.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Codes/association_rule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="560">
+              <caret line="52" column="45" lean-forward="true" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
               <folding>
                 <element signature="e#58#74#0" expanded="true" />
               </folding>
@@ -266,8 +265,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Codes/association_rule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        <state relative-caret-position="560">
+          <caret line="52" column="45" lean-forward="true" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
           <folding>
             <element signature="e#58#74#0" expanded="true" />
           </folding>
