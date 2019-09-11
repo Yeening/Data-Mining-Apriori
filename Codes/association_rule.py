@@ -2,16 +2,16 @@
 import itertools
 from itertools import chain,combinations
 
-stored_rules = []
+stored_rules = {}
 
 def generate_association_rule (frequent_sets, confidence_threshold):
     # start the loop from the back to have the parent set first
     # it stops at len(dict) = 2 (no point of going fewer than 2)
-    for item_dict in frequent_sets[:1:-1]:
+    for item_dict in frequent_sets[2:]:
         for combination in item_dict:
             word_array = combination.split(',')
             rhs = []
-            get_deeper(word_array, rhs, stored_rules, word_array, confidence_threshold)
+            get_deeper(word_array, rhs, stored_rules, confidence_threshold,frequent_sets) #storing association rules to it
 
 
 
@@ -23,13 +23,14 @@ def all_possible_subsets(iterable):
 
 
 #apriori algorithm for association rule
-def get_deeper(lhs, rhs, res, parent_list, confidence_threshold):
+def get_deeper(lhs, rhs, res, confidence_threshold,frequent_sets):
+    parent_list = lhs
     for i in lhs:
         rhs.add(i)
         temp_lhs = intersection(lhs, rhs)
-        if (confidence(parent_list, temp_lhs) > confidence_threshold):
-            res.add((lhs, rhs))
-            get_deeper(lhs,rhs,res,parent_list,confidence_threshold)
+        if (confidence(parent_list, temp_lhs,frequent_sets) > confidence_threshold):
+            res[','.join(lhs) + "->" + ','.join(rhs)] = 1 #adding the rules to the stored value
+            get_deeper(lhs,rhs,res,confidence_threshold,frequent_sets)
 
 #list intersection
 def intersection(lst1, lst2):
@@ -40,11 +41,10 @@ def findsubsets(s, n):
     return list(itertools.combinations(s, n))
 
 #calculate confidence
-#to do
-def confidence(lst1, lst2):
-    return lst1/lst2
-
-
+def confidence(lst1, lst2, frequent_sets):
+    count_lst1 = frequent_sets[len(lst1)].get(','.join(lst1))
+    count_lst2 = frequent_sets[len(lst2)].get(','.join(lst2))
+    return count_lst1/count_lst2
 
 #output template 1
 #input for position: RULE, HEAD, BODY
