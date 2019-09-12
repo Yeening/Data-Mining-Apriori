@@ -138,6 +138,7 @@ def ass_str_to_list(s):
 
 #Part 2 template 1
 def template1(position, number, combination): #combination should be a set
+    local_rules = set({})
     position = position.upper()  # avoid any lower case input
     if (type(number) == str): #change number to all upper case letters
         number.upper()
@@ -150,7 +151,10 @@ def template1(position, number, combination): #combination should be a set
                 body_line = [item for item in bodies[i] if item in combination]
                 if (len(head_line) > 0 or len(body_line) > 0):
                     counter += 1
-            print(len(heads) - counter)
+                else:
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+                    
+            print("Template 1 output: " + str(len(heads) - counter) + ". (Ignore this output for template 3.)")
 
         elif position == "HEAD":
             counter = 0
@@ -158,7 +162,10 @@ def template1(position, number, combination): #combination should be a set
                 head_line = [item for item in heads[i] if item in combination]
                 if (len(head_line) > 0):
                     counter += 1
-            print(len(heads) - counter)
+                else:
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+                    
+            print("Template 1 output: "  + str(len(heads) - counter) + ". (Ignore this output for template 3.)")
 
         elif position == "BODY":
             counter = 0
@@ -166,7 +173,10 @@ def template1(position, number, combination): #combination should be a set
                 body_line = [item for item in heads[i] if item in combination]
                 if (len(body_line) > 0):
                     counter += 1
-            print(len(bodies) - counter)
+                else:
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+            print("Template 1 output: " + str(len(heads) - counter) + ". (Ignore this output for template 3.)")
 
     elif number == "ANY":
         if position == "RULE":
@@ -176,7 +186,10 @@ def template1(position, number, combination): #combination should be a set
                 body_line = [item for item in bodies[i] if item in combination]
                 if (len(head_line) > 0 or len(body_line) > 0):
                     counter += 1
-            print(counter)
+                    
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+                    
+            print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
 
         elif position == "HEAD":
             counter = 0
@@ -184,7 +197,9 @@ def template1(position, number, combination): #combination should be a set
                 head_line = [item for item in heads[i] if item in combination]
                 if (len(head_line) > 0):
                     counter += 1
-            print(counter)
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+            print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
 
         elif position == "BODY":
             counter = 0
@@ -192,7 +207,10 @@ def template1(position, number, combination): #combination should be a set
                 body_line = [item for item in heads[i] if item in combination]
                 if (len(body_line) > 0):
                     counter += 1
-            print(counter)
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+            print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
+            
     else:
         if position == "RULE":
             counter = 0
@@ -201,7 +219,9 @@ def template1(position, number, combination): #combination should be a set
                 body_line = [item for item in bodies[i] if item in combination]
                 if (len(head_line) + len(body_line) == number):
                     counter += 1
-            print(counter)
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+            print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
 
         elif position == "HEAD":
             counter = 0
@@ -209,7 +229,9 @@ def template1(position, number, combination): #combination should be a set
                 head_line = [item for item in heads[i] if item in combination]
                 if (len(head_line) == number):
                     counter += 1
-            print(counter)
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+            print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
 
         elif position == "BODY":
             counter = 0
@@ -217,10 +239,16 @@ def template1(position, number, combination): #combination should be a set
                 body_line = [item for item in heads[i] if item in combination]
                 if (len(body_line) == number):
                     counter += 1
-            print(counter)
+                    local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+            print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
+        
+        return local_rules
 
 #Part 2 Template 2
 def template2(position, number):
+    local_rules = set({})
+
     position = position.upper()
 
     if position == "RULE":
@@ -228,23 +256,60 @@ def template2(position, number):
         for i in range (len(heads)):
             if (len(heads[i]) + len(bodies[i]) >= number):
                 counter += 1
-        print(counter)
+                local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+            
+        print("Template 2 output: " + str(counter) + ". (Ignore this output for template 3.)")
 
     elif position == "HEAD":
         counter = 0
         for i in range(len(heads)):
             if (len(heads[i]) >= number):
                 counter += 1
-        print(counter)
+                local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+        print("Template 2 output: " + str(counter) + ". (Ignore this output for template 3.)")
 
     else:
         counter = 0
         for i in range(len(bodies)):
             if (len(bodies[i]) >= number):
                 counter += 1
-        print(counter)
+                local_rules.add(str(heads[i]) + '->' + str(bodies[i]))
+
+        print("Template 2 output: " + str(counter) + ". (Ignore this output for template 3.)")
+
+    return local_rules
 
 #Part 2 template 3
+def template3 (arg1, *args):
+    if (arg1 == "1or1"):
+        rule1 = template1(args[1], args[2], args[3])
+        rule2 = template1(args[4], args[5], args[6])
+        print("Template 3 output: " + str(len(rule1.union(rule2))))
+
+    elif(arg1 == "1and1"):
+        rule1 = template1(args[1], args[2], args[3])
+        rule2 = template1(args[4], args[5], args[6])
+        print("Template 3 output: " + str(len(rule1.intersection(rule2))))
+
+    elif(arg1 == "1or2"):
+        rule1 = template1(args[1], args[2], args[3])
+        rule2 = template2(args[4], args[5])
+        print("Template 3 output: " + str(len(rule1.union(rule2))))
+
+    elif(arg1 == "1and2"):
+        rule1 = template1(args[1], args[2], args[3])
+        rule2 = template2(args[4], args[5])
+        print("Template 3 output: " + str(len(rule1.intersection(rule2))))
+
+    elif(arg1 == "2or2"):
+        rule1 = template1(args[1], args[2])
+        rule2 = template2(args[3], args[4])
+        print("Template 3 output: " + str(len(rule1.union(rule2))))
+
+    elif(arg1 == "2and2"):
+        rule1 = template1(args[1], args[2])
+        rule2 = template2(args[3], args[4])
+        print("Template 3 output: " + str(len(rule1.intersection(rule2))))
 
 
 
