@@ -1,4 +1,4 @@
-##Program Running Instructions:
+## Program Running Instructions:
 The program must strictly follow the format given in the homework assignment. No modification will be accepted. Any modification will result in the failure of running the program properly. 
 1. For Template 1: 
 	Every none-number word must be all capital. The gene type strictly follows the format "G1_UP", etc.
