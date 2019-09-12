@@ -4,14 +4,14 @@ The program must strictly follow the format given in the homework assignment. No
 	Every none-number word must be all capital. The gene type strictly follows the format "G1_UP", etc.
 	The last argument (the combination) must be in a set. For example, running the template 1 should look like:
 
-`template1("RULE", "ANY", {'G59_UP'}, 0.7, 0.5, True, transactions)`
+	`template1("RULE", "ANY", {'G59_UP'}, 0.7, 0.5, True, transactions)`
 
 The True here means to print out the result. The transations is just for passing values. They are required for template 1. 
 
 2. For Template 2:
 	Similar instruction as Template 1.
 	Example:
-`template2("rule", 3, 0.7, 0.5, True, transactions)`
+	`template2("rule", 3, 0.7, 0.5, True, transactions)`
 
 Similar explanation as Template 1. Please follow the format. 
 
@@ -19,7 +19,7 @@ Similar explanation as Template 1. Please follow the format.
 	The first argument must be a number followed by an LOWERCASE choice of (and/or). No exception will be made.
 	The rest of the arguments follow the instructions of Template 1 and 2. 
 	Example:
-`template3(transactions,0.7, 0.5, "1or1", "HEAD", "ANY", {"G10_DOWN"}, "BODY", 1, {"G59_UP"})`
+	`template3(transactions,0.7, 0.5, "1or1", "HEAD", "ANY", {"G10_DOWN"}, "BODY", 1, {"G59_UP"})`
 
 Running the program will be type:
 python main.py
