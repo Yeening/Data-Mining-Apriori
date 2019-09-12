@@ -243,7 +243,7 @@ def template1(position, number, combination): #combination should be a set
 
             print("Template 1 output: " + str(counter) + ". (Ignore this output for template 3.)")
         
-        return local_rules
+    return local_rules
 
 #Part 2 Template 2
 def template2(position, number):
@@ -282,33 +282,34 @@ def template2(position, number):
 #Part 2 template 3
 def template3 (arg1, *args):
     if (arg1 == "1or1"):
-        rule1 = template1(args[1], args[2], args[3])
-        rule2 = template1(args[4], args[5], args[6])
+        rule1 = template1(args[0], args[1], args[2])
+        rule2 = template1(args[3], args[4], args[5])
+
         print("Template 3 output: " + str(len(rule1.union(rule2))))
 
     elif(arg1 == "1and1"):
-        rule1 = template1(args[1], args[2], args[3])
-        rule2 = template1(args[4], args[5], args[6])
+        rule1 = template1(args[0], args[1], args[2])
+        rule2 = template1(args[3], args[4], args[5])
         print("Template 3 output: " + str(len(rule1.intersection(rule2))))
 
     elif(arg1 == "1or2"):
-        rule1 = template1(args[1], args[2], args[3])
-        rule2 = template2(args[4], args[5])
+        rule1 = template1(args[0], args[1], args[2])
+        rule2 = template1(args[3], args[4])
         print("Template 3 output: " + str(len(rule1.union(rule2))))
 
     elif(arg1 == "1and2"):
-        rule1 = template1(args[1], args[2], args[3])
-        rule2 = template2(args[4], args[5])
+        rule1 = template1(args[0], args[1], args[2])
+        rule2 = template1(args[3], args[4])
         print("Template 3 output: " + str(len(rule1.intersection(rule2))))
 
     elif(arg1 == "2or2"):
-        rule1 = template1(args[1], args[2])
-        rule2 = template2(args[3], args[4])
+        rule1 = template1(args[0], args[1])
+        rule2 = template2(args[2], args[3])
         print("Template 3 output: " + str(len(rule1.union(rule2))))
 
     elif(arg1 == "2and2"):
-        rule1 = template1(args[1], args[2])
-        rule2 = template2(args[3], args[4])
+        rule1 = template1(args[0], args[1])
+        rule2 = template2(args[2], args[3])
         print("Template 3 output: " + str(len(rule1.intersection(rule2))))
 
 
@@ -324,12 +325,14 @@ for association in associations:
     heads.append(left)
     bodies.append(right)
 
-counter = 0
-for i in range(len(heads)):
-    counter += 1
-    print(str(heads[i]) + "->" + str(bodies[i]))
-print(counter)
+# counter = 0
+# for i in range(len(heads)):
+#     counter += 1
+#     print(str(heads[i]) + "->" + str(bodies[i]))
+# print(counter)
 
 template1("RULE", "NONE", {"G96_DOWN", "G59_UP"})
 
 template2("rule", 3)
+
+template3("1and1", "HEAD", "ANY", "G38_DOWN", "BODY", "NONE", "G87_UP")
