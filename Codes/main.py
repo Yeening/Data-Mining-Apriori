@@ -1,13 +1,10 @@
 from apriori import *
-from pathlib import Path
-import os
 
 
 def data_to_array():
     # Generate a transaction list from the data
     # transactions is list of transaction dictionaries
-    grand_parent_path = Path(__file__).parents[1] #change it so the program runs on any platform/os
-    file = open(os.path.join(grand_parent_path, "Data", "associationruletestdata.txt"), 'r')
+    file = open('../Data/associationruletestdata.txt', 'r')
     transactions = []
     for line in file:
         item_set = line.split()
@@ -39,6 +36,33 @@ def answer_Q1():
     for support in supports:
         run_Q1(support)
 
-
 #answer_Q1()
-#run_Q1(0.7)
+transactions = data_to_array()
+print("Part 2, Q1")
+template1("RULE", "ANY", {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("RULE", "NONE", {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("RULE", 1, {'G59_UP', 'G10_Down'}, 0.7, 0.5, True, transactions)
+template1("HEAD", "ANY", {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("HEAD", "NONE", {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("HEAD", 1, {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("BODY", "ANY", {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("BODY", "NONE", {'G59_UP'}, 0.7, 0.5, True, transactions)
+template1("BODY", 1, {'G59_UP', 'G10_DOWN'}, 0.7, 0.5, True, transactions)
+print("Part 2, Q2")
+template2("rule", 3, 0.7, 0.5, True, transactions)
+template2("head", 2, 0.7, 0.5, True,transactions)
+template2("body", 1, 0.7, 0.5, True, transactions)
+
+print("Part 2, Q3")
+template3(transactions,0.7, 0.5, "1or1", "HEAD", "ANY", {"G10_DOWN"}, "BODY", 1, {"G59_UP"})
+template3(transactions,0.7, 0.5, "1and1", "HEAD", "ANY", {"G10_DOWN"}, "BODY", 1, {"G59_UP"})
+template3(transactions,0.7, 0.5, "1or2", "HEAD", "ANY", {"G10_DOWN"}, "BODY", 2)
+template3(transactions,0.7, 0.5, "1and2", "HEAD", "ANY", {"G10_DOWN"}, "BODY", 2)
+template3(transactions,0.7, 0.5, "2or2", "HEAD", 1, "BODY", 2)
+template3(transactions,0.7, 0.5, "2and2", "HEAD", 1, "BODY", 2)
+
+
+
+# answer_Q1()
+# run_Q1(0.7)
+# run_Q1(0.5)
